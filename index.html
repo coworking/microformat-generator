@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Micro-format Generator</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="js/additional-methods.js"></script>
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB0uh-9nDGUt9ViDdyto4OA7NtFuLZJw8s&sensor=false"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+		$(document).ready(function() {
+			var obj = {			
+				rules: {
+					spaceName: {
+						letterswithbasicpunc: true
+					},
+					address: {
+						required: true
+					},
+					url: {
+						url: true
+					},
+					email: {
+						email: true
+					},
+					pricingURL: {
+						url: true,
+						notEqual: "#url"
+					}
+				}
+			}
+
+			$("#inputFields").validate(obj);
+		});
+		
+		jQuery(function($) {
+			var formTimer = 0,
+			currentField,
+			lastValue;
+
+			$('#url')
+			.focus(startWatching)
+			.blur(stopWatching)
+			.keypress(updateCurrentField);
+
+			function startWatching() {
+				stopWatching();
+				currentField = this;
+				lastValue = undefined;
+				formTimer = setInterval(updateCurrentField, 100);
+			}
+
+			function stopWatching() {
+				if (formTimer != 0) {
+				  clearInterval(formTimer);
+				  formTimer = 0;
+				}
+			
+				currentField = undefined;
+				lastValue = undefined;
+			}
+
+			function updateCurrentField() {
+				var thisValue;
+
+				if (currentField && currentField.name) {
+					thisValue = currentField.value;
+					if (thisValue != lastValue) {
+						lastValue = thisValue;
+						$('#pricingURL').val(thisValue);
+					}
+				}
+			}
+		});
+	</script>
+</head>
+
+<body onload="initialize()">
+    <div>
+        <div style="float:Left;">
+            <script type="text/javascript"><!--
+                google_ad_client = "pub-1830327498013415";
+                /* 160x600, created 3/8/10 */
+                google_ad_slot = "7106425745";
+                google_ad_width = 160;
+                google_ad_height = 600;
+            //-->
+            </script>
+            <script type="text/javascript"
+                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+        </div>
+        <div id="container">
+        	<div id="leftCol">
+				<form id="inputFields">
+					<span>Space Name: </span><input type="text" id="spaceName" name="spaceName" value="myhouse" /><br/>
+					<span>Address: </span><input type="text" id="inputTextAddress" name="address" class="required" value="13039 20th Ave NE"/><br/>
+					<span>Contact Email: </span><input type="text" id="email" name="email" value="myemail@email.com"/><br/>
+					<span>URL: </span><input type="text" id="url" name="url" value="http://myurl.com" /><br/>
+					<span>Pricing URL: </span><input type="text" id="pricingURL" name="pricingURL" value="" /><br/>
+					<span>Facebook: </span><input type="text" id="facebook" value="http://facebook.com/" name="facebook" /><br/>
+					<span>Twitter: </span><input type="text" id="twitter" value="http://twitter.com/"name="twitter" /><br/>
+					<span>Flickr: </span><input type="text" id="flickr" value="http://flickr.com/"name="flickr" /><br/>
+					<span>Vimeo: </span><input type="text" id="vimeo" value="http://vimeo.com/" name="vimeo" /><br/>
+					<span>Youtube: </span><input type="text" id="youtube" value="http://youtube.com/"name="youtube" /><br/>
+					<span>Yelp: </span><input type="text" id="yelp" value="http://yelp.com/" name="yelp" /><br/>
+					
+					<input type="button" name="" id="inputButtonGeocode" title="Geocode!" value="Geocode!" value="" class="css3button" onclick="codeAddress()"></input>
+				</form>
+
+				<pre></pre>
+			</div>
+	        <div id="map_canvas"></div>
+        </div>
+    </div>
+</body>
+</html>
