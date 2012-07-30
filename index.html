@@ -4,7 +4,8 @@
     <title>Micro-format Generator</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+	<link rel="shortcut icon" href="img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="css/styles.css" />
     
     <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate.js"></script>
@@ -17,6 +18,7 @@
 			var obj = {			
 				rules: {
 					spaceName: {
+						required: true,
 						letterswithbasicpunc: true
 					},
 					address: {
@@ -32,6 +34,9 @@
 						url: true,
 						notEqual: "#url"
 					}
+				},
+				messages: {
+					address: "Please enter an address"
 				}
 			}
 
@@ -98,17 +103,18 @@
         <div id="container">
         	<div id="leftCol">
 				<form id="inputFields">
-					<span>Space Name: </span><input type="text" id="spaceName" name="spaceName" value="myhouse" /><br/>
-					<span>Address: </span><input type="text" id="inputTextAddress" name="address" class="required" value="13039 20th Ave NE"/><br/>
-					<span>Contact Email: </span><input type="text" id="email" name="email" value="myemail@email.com"/><br/>
-					<span>URL: </span><input type="text" id="url" name="url" value="http://myurl.com" /><br/>
+				<img src="img/logo.gif" />
+					<span>Space Name: </span><input type="text" id="spaceName" name="spaceName" /><br/>
+					<span>Address: </span><input type="text" id="inputTextAddress" name="address" class="required" /><br/>
+					<span>Contact Email: </span><input type="text" id="email" name="email" /><br/>
+					<span>URL: </span><input type="text" id="url" name="url" /><br/>
 					<span>Pricing URL: </span><input type="text" id="pricingURL" name="pricingURL" value="" /><br/>
-					<span>Facebook: </span><input type="text" id="facebook" value="http://facebook.com/" name="facebook" /><br/>
-					<span>Twitter: </span><input type="text" id="twitter" value="http://twitter.com/"name="twitter" /><br/>
-					<span>Flickr: </span><input type="text" id="flickr" value="http://flickr.com/"name="flickr" /><br/>
-					<span>Vimeo: </span><input type="text" id="vimeo" value="http://vimeo.com/" name="vimeo" /><br/>
-					<span>Youtube: </span><input type="text" id="youtube" value="http://youtube.com/"name="youtube" /><br/>
-					<span>Yelp: </span><input type="text" id="yelp" value="http://yelp.com/" name="yelp" /><br/>
+					<span>Facebook: </span><input type="text" id="facebook" name="facebook" value="http://facebook.com/" /><br/>
+					<span>Twitter: </span><input type="text" id="twitter" name="twitter" value="http://twitter.com/" /><br/>
+					<span>Flickr: </span><input type="text" id="flickr" name="flickr" value="http://flickr.com/" /><br/>
+					<span>Vimeo: </span><input type="text" id="vimeo" name="vimeo" value="http://vimeo.com/" /><br/>
+					<span>Youtube: </span><input type="text" id="youtube" name="youtube" value="http://youtube.com/" /><br/>
+					<span>Yelp: </span><input type="text" id="yelp" name="yelp" value="http://yelp.com/" /><br/>
 					
 					<input type="button" name="" id="inputButtonGeocode" title="Geocode!" value="Geocode!" value="" class="css3button" onclick="codeAddress()"></input>
 				</form>
