@@ -49,9 +49,8 @@ function codeAddress() {
 			alert("Please enter an address"/* + status*/);
 		}
 	
-		var myLat = results[0].geometry.location.$a;
-		var myLng = results[0].geometry.location.ab;
-		var codeString = '&lt;meta name="description" content="Coworking Space Name: ' + spaceName + '"/&gt;\n&lt;meta name="ICBM" content="' + myLat + ', ' + myLng + '"/&gt;';
+		var coord = "" + results[0].geometry.location;
+		var codeString = '&lt;meta name="description" content="Coworking Space Name: ' + spaceName + '"/&gt;\n&lt;meta name="ICBM" content="' + coord.substring(1, coord.length - 1) + '"/&gt;';
 		$('pre').html(codeString);
 	});
 }
